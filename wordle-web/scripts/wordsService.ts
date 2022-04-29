@@ -10,13 +10,15 @@ export abstract class WordsService {
         if(input.includes('?')){
             input = input.replace('?', '.') //replace all placeholders with . to search match any letters
         }
-        //fill in empty space in guess with .
-        if(input.length < 5){
-          input += '.';
-        }
-        //make regexp
-        const regExp = new RegExp('^' + input + '$');
     }
+    //fill in empty space in guess with .
+    while (input.length < 5){
+      input += '.';
+    }
+    //{{console.log(input)}}
+    //make regexp
+    const regExp = new RegExp('^' + input + '$');
+
     let matches: string [] = []; //making an array to hold all possible answers
 
     for (let x = 0; x < this.#words.length; x++) { //increment through whole word array
@@ -24,7 +26,7 @@ export abstract class WordsService {
         matches.push(WordsService.#words[x]);
       }
     }
-    var availableWords: number = matches.length;
+    //var availableWords: number = matches.length;
     /*WordsService.#words.forEach( (element: any) => { //move this to wordsService, since word is a private 
         if (element.match(input)){
             matches.push(element)
